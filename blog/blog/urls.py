@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from webapp.views import ArticleListView, ArticleDetailView, BloggerListView, BloggerDetailView, FavoriteListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', ArticleListView.as_view(), name='article_list'),
+    path('article/<int:pk>', ArticleDetailView.as_view(), name='article_detail'),
+    path('blogger', BloggerListView.as_view(), name='blogger_list'),
+    path('blogger/<int:pk>', BloggerDetailView.as_view(), name='blogger_detail'),
+    path('favorite', FavoriteListView.as_view(), name='favorite_list')
 ]
