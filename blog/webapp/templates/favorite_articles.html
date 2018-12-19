@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Статья{% endblock %}
+{% block content %}
+    {% for post in list %}
+
+        <h6><a href="{% url 'article_detail' post.article.pk %}">{{ post.article.title}}</a></h6>
+
+    {% endfor %}
+{% endblock %}
+

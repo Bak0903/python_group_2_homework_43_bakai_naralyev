@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect, get_object_or_404
 from django.views.generic import ListView, DetailView
 from webapp.models import Blogger, Article, Favorite
 
@@ -22,6 +22,8 @@ class BloggerDetailView(DetailView):
     template_name = 'blogger_detail.html'
 
 
-class FavoriteListView(ListView):
-    model = Favorite
-    template_name = 'favorite_list.html'
+def favorite_articles(request, blogger_pk):
+    blogger = get_object_or_404(Blogger, pk=blogger_pk)
+    list = blogger.blogger_fav.all
+    return render(request, 'favorite_articles.html', {'list': list})
+
