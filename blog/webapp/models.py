@@ -36,11 +36,11 @@ class Comment(models.Model):
 
 
 class Mark(models.Model):
-    MARK_AWFULLY = 1
-    MARK_BAD = 2
-    MARK_NORMAL = 3
-    MARK_GOOD = 4
-    MARK_EXCELLENT = 5
+    MARK_AWFULLY = '1'
+    MARK_BAD = '2'
+    MARK_NORMAL = '3'
+    MARK_GOOD = '4'
+    MARK_EXCELLENT = '5'
 
     MARK_CHOICES = (
         (MARK_AWFULLY, 'ужасно'),
@@ -50,8 +50,8 @@ class Mark(models.Model):
         (MARK_EXCELLENT, 'отлично')
     )
 
-    relation = models.ForeignKey(Article, on_delete=models.PROTECT, related_name='article_mark',  verbose_name="Отношение")
-    user = models.ForeignKey(Blogger, max_length=200, on_delete=models.PROTECT, related_name='blogger_mark', verbose_name="Оценивающий")
+    relation = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='article_mark',  verbose_name="Отношение")
+    user = models.ForeignKey(Blogger, max_length=200, on_delete=models.CASCADE, related_name='blogger_mark', verbose_name="Оценивающий")
     mark = models.CharField(max_length=20, choices=MARK_CHOICES, null=True, blank=True, verbose_name="Оценка")
 
     def __str__(self):

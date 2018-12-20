@@ -7,6 +7,9 @@
     <h5>Комментарии</h5>
     {% for comment in article.article_comm.all %}
         <p>{{ comment.author }} {{ comment.text }}</p>
+                {% for comment in comment.comment.all %}
+                        <p class="ml-4">{{ comment.author }} {{ comment.text }}</p>
+                {% endfor %}
     {% endfor %}
 
     <h5>Оценки</h5>
