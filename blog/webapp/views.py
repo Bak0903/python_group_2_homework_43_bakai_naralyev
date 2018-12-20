@@ -1,6 +1,6 @@
-from django.shortcuts import render,redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, FormView, CreateView, UpdateView, DeleteView
-from webapp.models import Blogger, Article, Favorite, Comment
+from webapp.models import Blogger, Article, Comment
 from webapp.forms import SearchArticleForm, ArticleForm, CommentForm
 from django.urls import reverse_lazy
 
@@ -43,19 +43,19 @@ def favorite_articles(request, blogger_pk):
     return render(request, 'favorite_articles.html', {'list': list})
 
 
-class ProjectCreateView(CreateView):
+class ArticleCreateView(CreateView):
     model = Article
     template_name = 'article_create.html'
     form_class = ArticleForm
     success_url = reverse_lazy('article_list')
 
-class ProjectDeleteView(DeleteView):
+class ArticleDeleteView(DeleteView):
     model = Article
     template_name = 'delete_article.html'
     success_url = reverse_lazy('article_list')
 
 
-class ProjectUpdateView(UpdateView):
+class ArticleUpdateView(UpdateView):
     model = Article
     template_name = 'article_update.html'
     form_class = ArticleForm

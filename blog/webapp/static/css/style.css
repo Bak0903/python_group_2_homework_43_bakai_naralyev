@@ -9,44 +9,14 @@ body {
 
 }
 
-.navbar-nav, .inner_container {
-    padding: 0 20px;
-}
 
-.alert {
-    width: 49%;
-}
-
-.head {
-    width: 100%;
-}
-
-.my_title {
-    width: 60%;
-}
-
-.edit_or_del {
-    width: 22%;
-    float: right;
-}
-
-.btn-success {
-    margin-top: 40px;
-    width: 91px;
-}
-
-.h1 {
-    padding-top: 21px;
-    height: 90px;
+h1 {
+    padding: 21px 100px;
     text-align: center;
 }
 
-.h2 {
-    font-size: 14px;
-    font-weight: bold;
-}
-
 a {
+    margin: auto 30px;
     text-decoration: none;
     color: firebrick;
 }
@@ -56,31 +26,14 @@ a:hover {
     color: black;
 }
 
-.email_text{
-    font-size: 14px;
-}
-
-.text-justify {
-    margin: 27px 0;
-    padding-right: 8px;
-}
-
-.text-right {
-    margin: 10px 23px;
-    color: grey;
-}
-
-.modal-title {
-    margin-left: 146px;
-}
-
-.modal_btn {
-    width: 100px;
-}
 textarea, input {
     width: 300px;
 }
 
 textarea {
     height: 200px;
+}
+
+p, h5 {
+    margin: 20px 30px;
 }

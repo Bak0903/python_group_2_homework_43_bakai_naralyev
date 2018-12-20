@@ -3,11 +3,11 @@
 {% block content %}
 
 
-    <div class="mt-3">
-        <form action="{% url 'article_list' %}" method="GET">
+    <div class="mt-3 mb-3">
+        <form class="" action="{% url 'article_list' %}" method="GET">
             {% csrf_token %}
             {{ form.search.label }}: {{ form.search }} {{ form.text }}
-            <button type="submit" class="btn btn-primary">Искать</button>
+            <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Искать</button>
         </form>
     </div>
     {% for article in article_list %}

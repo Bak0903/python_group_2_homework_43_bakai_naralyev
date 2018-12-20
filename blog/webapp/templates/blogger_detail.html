@@ -3,13 +3,13 @@
 
 {% block content %}
     <h1>{{ blogger.name }}</h1>
-    <p>{{ blogger.email }}</p>
-    <p>{{ blogger.phone }}</p>
-    <h2>Статьи</h2>
+    <p>Электронная почта: {{ blogger.email }}</p>
+    <p>Телефон: {{ blogger.phone }}</p>
+    <h5 class="mt-4">Статьи</h5>
     {% for article in blogger.blog_author.all %}
-        <div>{{ article.title }}</div>
+        <a href="{% url 'article_detail' article.pk %}">{{ article.title }}</a> <br>
     {% endfor %}
-    <h2>Избранные</h2>
-    <a href="{% url 'favorite' blogger.pk%}">Избранные</a>
+
+    <a href="{% url 'favorite' blogger.pk%}"><h5 class="mt-4">Избранные</h5></a>
 
 {% endblock %}

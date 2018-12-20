@@ -17,8 +17,8 @@ from django.contrib import admin
 from django.urls import path
 from webapp.views import ArticleListView, ArticleDetailView, \
         BloggerListView, BloggerDetailView, favorite_articles, \
-        ProjectCreateView, ProjectUpdateView, CommentCreateView, \
-        ProjectDeleteView
+    ArticleCreateView, ArticleUpdateView, CommentCreateView, \
+    ArticleDeleteView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,11 +27,9 @@ urlpatterns = [
     path('blogger', BloggerListView.as_view(), name='blogger_list'),
     path('blogger/<int:pk>', BloggerDetailView.as_view(), name='blogger_detail'),
     path('favorite/<int:blogger_pk>', favorite_articles, name='favorite'),
-
-
-    path('article/create', ProjectCreateView.as_view(), name='create_article'),
-    path('article/<int:pk>/delete', ProjectDeleteView.as_view(), name='article_delete'),
-    path('article/<int:pk>/update', ProjectUpdateView.as_view(), name='article_update'),
+    path('article/create', ArticleCreateView.as_view(), name='create_article'),
+    path('article/<int:pk>/delete', ArticleDeleteView.as_view(), name='article_delete'),
+    path('article/<int:pk>/update', ArticleUpdateView.as_view(), name='article_update'),
     path('article_comment/add', CommentCreateView.as_view(), name='create_comment'),
 
 ]
