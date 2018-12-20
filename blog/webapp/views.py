@@ -1,10 +1,25 @@
 from django.shortcuts import render,redirect, get_object_or_404
-from django.views.generic import ListView, DetailView
-from webapp.models import Blogger, Article, Favorite
+from django.views.generic import ListView, DetailView, FormView, CreateView, UpdateView, DeleteView
+from webapp.models import Blogger, Article, Favorite, Comment
+from webapp.forms import SearchArticleForm, ArticleForm, CommentForm
+from django.urls import reverse_lazy
 
-class ArticleListView(ListView):
+
+class ArticleListView(ListView, FormView):
     model = Article
     template_name = 'article_list.html'
+    form_class = SearchArticleForm
+
+    def get_queryset(self):
+        search = self.request.GET.get('search')
+
+        if not search:
+            return Article.objects.all()
+        else:
+            return Article.objects.filter(title__contains=search)
+
+
+
 
 
 class ArticleDetailView(DetailView):
@@ -26,4 +41,30 @@ def favorite_articles(request, blogger_pk):
     blogger = get_object_or_404(Blogger, pk=blogger_pk)
     list = blogger.blogger_fav.all
     return render(request, 'favorite_articles.html', {'list': list})
+
+
+class ProjectCreateView(CreateView):
+    model = Article
+    template_name = 'article_create.html'
+    form_class = ArticleForm
+    success_url = reverse_lazy('article_list')
+
+class ProjectDeleteView(DeleteView):
+    model = Article
+    template_name = 'delete_article.html'
+    success_url = reverse_lazy('article_list')
+
+
+class ProjectUpdateView(UpdateView):
+    model = Article
+    template_name = 'article_update.html'
+    form_class = ArticleForm
+    success_url = reverse_lazy('article_list')
+
+
+class CommentCreateView(CreateView):
+    model = Comment
+    template_name = 'comment_create.html'
+    form_class = CommentForm
+    success_url = reverse_lazy('article_list')
 

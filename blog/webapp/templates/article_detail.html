@@ -4,11 +4,18 @@
 {% block content %}
     <h1>{{ article.title }}</h1>
     <p>{{ article.text }}</p>
+
+    <a class="" href="{% url 'article_update' article.pk %}">Редактировать статью</a>
+    <a class="" href="{% url 'article_delete' article.pk %}">Удаленить статью</a>
+    <a class="" href="{% url 'create_comment'%}">Комментировать</a>
+
+
+
     <h5>Комментарии</h5>
     {% for comment in article.article_comm.all %}
-        <p>{{ comment.author }} {{ comment.text }}</p>
-                {% for comment in comment.comment.all %}
-                        <p class="ml-4">{{ comment.author }} {{ comment.text }}</p>
+        <p>{{ comment.author }}: {{ comment.text }}</p>
+                {% for comment_lvl_2 in comment.comment.all %}
+                        <p class="ml-4">{{ comment_lvl_2.author }}: {{ comment_lvl_2.text }}</p>
                 {% endfor %}
     {% endfor %}
 
